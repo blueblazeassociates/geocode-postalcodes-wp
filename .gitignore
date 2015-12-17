@@ -9,6 +9,7 @@
 
 # Exclude composer.phar and helper symlink for composer script.
 /composer
+/composer-nodev
 /composer.phar
 
 # Exclude composer.lock (this is a library).
