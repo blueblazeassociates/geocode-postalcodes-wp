@@ -1,2 +1,2 @@
-# geocode-zipcode
-A quick geocoder for US ZIP codes.
+# geocode-zipcode-wp
+WordPress integration for blueblazeassociates/geocode-postalcodes.
