@@ -18,7 +18,7 @@ class USPostalCodeGeocoder extends \BlueBlazeAssociates\Geocoding\PostalCodes\Ge
   }
 
   /**
-   * @param string $zipcode
+   * @param string $postal_code
    * @param string $provider
    *
    * @return LatLon
@@ -32,8 +32,8 @@ class USPostalCodeGeocoder extends \BlueBlazeAssociates\Geocoding\PostalCodes\Ge
     }
 
     // Generate keys for looking up WordPress transients.
-    $transient_key_lat = static::get_transient_key_lat( $zipcode );
-    $transient_key_lon = static::get_transient_key_lon( $zipcode );
+    $transient_key_lat = static::get_transient_key_lat( $postal_code );
+    $transient_key_lon = static::get_transient_key_lon( $postal_code );
 
     // See if this ZIP code has been previously geocoded.
     // For some zipcodes (non-US or error in geocoding), we may be storing an error sentinel value.
@@ -46,7 +46,7 @@ class USPostalCodeGeocoder extends \BlueBlazeAssociates\Geocoding\PostalCodes\Ge
     // If a geocode operation previously generated an error and stored this in a transient,
     // throw an exception. We can't continue until the error clears.
     if ( $error_sentinel == $zipcode_lat || $error_sentinel == $zipcode_lon ) {
-      throw new GeocodingException( 'A previous geocoding error occurred while processing ZIP code: ' . $zipcode );
+      throw new GeocodingException( 'A previous geocoding error occurred while processing ZIP code: ' . $postal_code );
     }
 
     // See if the transient lookup succeeded.
@@ -71,7 +71,7 @@ class USPostalCodeGeocoder extends \BlueBlazeAssociates\Geocoding\PostalCodes\Ge
 
     $latlon = null;
     try {
-      $latlon = $zipcode_geocode_provider->geocode( $zipcode );
+      $latlon = $zipcode_geocode_provider->geocode( $postal_code );
     } catch ( \Exception $exception ) {
       // If an error occurred, store the error sentinel in the transients.
       // Cache for one day.
