@@ -76,8 +76,8 @@ class USPostalCodeGeocoder extends \BlueBlazeAssociates\Geocoding\PostalCodes\Ge
 
     // Cache lat and lon as WordPress transients.
     // Cache for one year.
-    set_transient( $transient_key_lat, $latlon->getLat(), YEAR_IN_SECONDS );
-    set_transient( $transient_key_lon, $latlon->getLon(), YEAR_IN_SECONDS );
+    set_transient( $transient_key_lat, $latlon->get_lat(), YEAR_IN_SECONDS );
+    set_transient( $transient_key_lon, $latlon->get_lon(), YEAR_IN_SECONDS );
 
     return $latlon;
   }
