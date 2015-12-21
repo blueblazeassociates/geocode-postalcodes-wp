@@ -3,6 +3,7 @@
 namespace BlueBlazeAssociates\Geocoding\PostalCodes\WordPress\Geocoders;
 
 use BlueBlazeAssociates\Geocoding\PostalCodes\Providers\GoogleMapsProvider;
+use BlueBlazeAssociates\Geocoding\GeocodingException;
 use BlueBlazeAssociates\Geocoding\LatLon;
 
 /**
