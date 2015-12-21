@@ -58,20 +58,9 @@ class USPostalCodeGeocoder extends \BlueBlazeAssociates\Geocoding\PostalCodes\Ge
      * OK, there aren't any stored transient values. A lookup will be required.
      */
 
-    // Look up the desired provider.
-    $zipcode_geocode_provider = null;
-    if ( GeocodingProviders::GOOGLE_MAPS == $provider ) {
-      $zipcode_geocode_provider = new GoogleZIPCodeGeocodeProvider();
-    }
-
-    // Make sure the provider instantiation worked.
-    if ( is_null( $zipcode_geocode_provider ) || ! ( $zipcode_geocode_provider instanceof AbstractZIPCodeGeocodeProvider ) ) {
-      throw new GeocodingException( 'Unknown ZIP Code Geocode provider: ' . $provider );
-    }
-
     $latlon = null;
     try {
-      $latlon = $zipcode_geocode_provider->geocode( $postal_code );
+      $latlon = parent::geocode( $postal_code );
     } catch ( \Exception $exception ) {
       // If an error occurred, store the error sentinel in the transients.
       // Cache for one day.
